@@ -10,7 +10,7 @@ export default function createServer(): http.Server {
   const app = express;
   const server = http.createServer(app);
   server.listen(port, () => {
-    log.info("Server listening at port %d", port);
+    log.info("Server listening at port:", port);
     dbConnect();
   });
   return server;
