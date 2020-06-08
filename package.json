@@ -4,7 +4,8 @@
   "description": "chat socket.io backend",
   "main": "src/app.ts",
   "scripts": {
-    "start": "nodemon -w src --ext ts --exec ts-node src/app.ts",
+    "start": "cross-env NODE_ENV=production nodemon -w src --ext ts --exec ts-node src/app.ts",
+    "dev": "cross-env NODE_ENV=development nodemon -w src --ext ts --exec ts-node src/app.ts",
     "test": "mocha -r ts-node/register src/**/*.test.ts"
   },
   "keywords": [
@@ -19,6 +20,7 @@
     "chai": "^4.2.0",
     "class-validator": "^0.12.2",
     "config": "^3.3.1",
+    "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "moment": "^2.26.0",
     "pg": "^8.2.1",
