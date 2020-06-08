@@ -10,8 +10,8 @@ export default function connectSocketIo(server: http.Server): io.Server {
     
     ioServer.on("connection", socket => {
       for(let TYPE in EVENT_TYPES){
-        socket.on(TYPE, () => {
-          EVENT_TYPES[TYPE](socket);
+        socket.on(TYPE, (payload) => {
+          EVENT_TYPES[TYPE](socket,payload);
         });
       }
 
