@@ -15,9 +15,19 @@ export default async function JoinRoom(socket: io.Socket, payload) {
       return null;
     }
 
-    const room = new Room();
-    room.identifier = payload.roomIdentifier;
-    room.users = [user];
+    let room = await Room.findOne({
+      where: {identifier: payload.roomIdentifier}
+    });
+
+    if(!room){
+      room = new Room();
+      room.identifier = payload.roomIdentifier;
+      room.users = [user];
+      room.messages = [];
+    } else {
+      room.users.push(user);
+    }
+
 
     const errors = await validate(room);
     if (errors.length > 0) {
