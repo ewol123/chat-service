@@ -3,7 +3,7 @@ const env = process.env.NODE_ENV || "development";
 
 const config = {
   api: {
-    version,
+    version
   },
   port: 3001,
   database: {
@@ -15,7 +15,11 @@ const config = {
       password: "test",
       database: "chat-dev",
       entities: ["src/models/*.ts"],
-      synchronize: true
+      synchronize: false,
+      migrations: ["src/migration/*.ts"],
+      cli: {
+        migrationsDir: "src/migration"
+      }
     },
     production: {
       type: "postgres",
@@ -25,7 +29,11 @@ const config = {
       password: "test",
       database: "chat-prod",
       entities: ["src/models/*.ts"],
-      synchronize: false
+      synchronize: false,
+      migrations: ["src/migration/*.ts"],
+      cli: {
+        migrationsDir: "src/migration"
+      }
     },
     staging: {
       type: "postgres",
@@ -35,7 +43,11 @@ const config = {
       password: "test",
       database: "chat-staging",
       entities: ["src/models/*.ts"],
-      synchronize: false
+      synchronize: false,
+      migrations: ["src/migration/*.ts"],
+      cli: {
+        migrationsDir: "src/migration"
+      }
     }
   }
 };
@@ -44,4 +56,4 @@ export default {
   api: config.api,
   port: config.port,
   database: config.database[env]
-}
+};
