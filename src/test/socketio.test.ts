@@ -6,6 +6,9 @@ import chai from "chai";
 import http from "http";
 import ioServ from "socket.io";
 
+import { User } from "../models/User";
+import { Room } from "../models/Room";
+
 const expect = chai.expect;
 
 let httpServer: http.Server;
@@ -13,17 +16,22 @@ let httpServerAddr: import("net").AddressInfo;
 let ioServer: ioServ.Server;
 let socket: SocketIOClient.Socket;
 
-before((done) => {
-  httpServer = createServer();
+let userId;
+const roomIdentifier = "12aa368d-5913-46e4-81a2-de4d2477d13e";
+
+before(async () => {
+  httpServer = await createServer(true);
   httpServerAddr = httpServer.address() as import("net").AddressInfo;
   ioServer = connectSocketIO(httpServer);
-  done();
+  return Promise.resolve();
 });
 
-after((done) => {
+after(async () => {
   ioServer.close();
   httpServer.close();
-  done();
+  await User.delete({id: userId});
+  await Room.delete({identifier: roomIdentifier})
+  return Promise.resolve();
 });
 
 beforeEach((done) => {
@@ -57,6 +65,52 @@ describe('basic socket.io example', () => {
     socket.emit("PING");
     socket.once('PONG', (message) => {
       expect(message).to.equal('OK')
+      done();
+    });
+  });
+  it('should create user', (done) => {
+    socket.emit("CREATE_USER", {name: "hello_world"});
+    socket.once('USER_CREATED', (payload) => {
+      expect(payload).to.be.an("object");
+      expect(payload).to.have.property("user");
+      expect(payload.user).to.have.property("id");
+      expect(payload.user).to.have.property("name");
+      expect(payload.user.name).to.equal("hello_world");
+      userId = payload.user.id;
+      done();
+    });
+  });
+  it('should join room', (done) => {
+    socket.emit("JOIN_ROOM", {userIdentifier: userId, roomIdentifier});
+    socket.once('JOINED_ROOM', (payload) => {
+      expect(payload).to.be.an("object");
+      expect(payload).to.have.property("roomIdentifier");
+      expect(payload).to.have.property("users");
+      expect(payload).to.have.property("messages");
+      expect(payload).to.have.property("isInitialized");
+
+      expect(payload.roomIdentifier).to.equal(roomIdentifier);
+      expect(payload.users).to.be.an("array");
+      expect(payload.messages).to.be.an("array");
+      expect(payload.isInitialized).to.equal(true);
+
+      done();
+    });
+  });
+  it('should leave room', (done) => {
+    socket.emit("LEAVE_ROOM", {userIdentifier: userId});
+    socket.once('LEFT_ROOM', (payload) => {
+      expect(payload).to.be.an("object");
+      expect(payload).to.have.property("roomIdentifier");
+      expect(payload).to.have.property("users");
+      expect(payload).to.have.property("messages");
+      expect(payload).to.have.property("isInitialized");
+
+      expect(payload.roomIdentifier).to.equal(null);
+      expect(payload.users).to.be.an("array");
+      expect(payload.messages).to.be.an("array");
+      expect(payload.isInitialized).to.equal(false);
+
       done();
     });
   });
