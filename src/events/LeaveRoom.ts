@@ -28,6 +28,9 @@ export default async function LeaveRoom(socket: io.Socket, payload) {
           messages: [],
           isInitialized: false
         });
+        socket.to(room.identifier).broadcast.emit("LEFT_ROOM", {
+          users: room.users
+        });
       });
     });
   } catch (error) {
