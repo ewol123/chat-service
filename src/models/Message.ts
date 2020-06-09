@@ -15,7 +15,7 @@ export class Message extends BaseEntity {
   @CreateDateColumn({type: "timestamp"})
   stamp: Date;
 
-  @ManyToOne(type => User, user => user.messages)
+  @ManyToOne(type => User, user => user.messages, {eager: true})
   user: User;
 
   @ManyToOne(type => Room, room => room.messages)
