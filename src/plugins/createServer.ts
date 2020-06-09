@@ -6,12 +6,11 @@ import log from "../utils/logger";
 
 const { port } = config;
 
-export default function createServer(): http.Server {
+export default async function createServer(migrate: boolean = false): Promise<http.Server> {
   const app = express;
   const server = http.createServer(app);
-  server.listen(port, () => {
-    log.info("Server listening at port:", port);
-    dbConnect();
-  });
+  await server.listen(port);
+  log.info("Server listening at port:", port);
+  await dbConnect(migrate);
   return server;
 }
