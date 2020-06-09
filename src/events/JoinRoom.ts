@@ -36,6 +36,9 @@ export default async function JoinRoom(socket: io.Socket, payload) {
             messages,
             isInitialized: true
           });
+          socket.to(identifier).broadcast.emit("JOINED_ROOM", {
+            users
+          });
         });
       });
     }
