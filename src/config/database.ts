@@ -4,7 +4,7 @@ import log from "../utils/logger";
 
 import config from "./app";
 
-export async function dbConnect() {
+export async function dbConnect(migrate: boolean) {
   //handle database connection errors, retry as long as there is no connection, every 1 second. 
   let success = false;
   while (!success) {
@@ -18,10 +18,14 @@ export async function dbConnect() {
         database: config.database.database,
         entities: config.database.entities,
         synchronize: config.database.synchronize,
+        migrations: config.database.migrations,
+        cli: {
+          migrationsDir: config.database.migrationsDir
+        },
+        migrationsRun: migrate
     });
       const res = await connection.query('select 1+1 as result');
       if (res) success = true;
-      await connection.runMigrations();
     } catch (err) {
       log.error(err);
       await new Promise(resolve => setTimeout(resolve, 1000));
