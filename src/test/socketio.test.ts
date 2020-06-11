@@ -1,5 +1,6 @@
 import createServer from "../plugins/createServer";
 import connectSocketIO from "../plugins/connectSocketIO";
+import { v4 as uuidv4 } from "uuid";
 
 import io from "socket.io-client"
 import chai from "chai";
@@ -17,7 +18,7 @@ let ioServer: ioServ.Server;
 let socket: SocketIOClient.Socket;
 
 let userId;
-const roomIdentifier = "12aa368d-5913-46e4-81a2-de4d2477d13e";
+const roomIdentifier = uuidv4()
 
 before(async () => {
   httpServer = await createServer(true);
