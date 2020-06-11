@@ -9,6 +9,7 @@ import ioServ from "socket.io";
 
 import { User } from "../models/User";
 import { Room } from "../models/Room";
+import { Message } from "../models/Message";
 
 const expect = chai.expect;
 
@@ -30,6 +31,7 @@ before(async () => {
 after(async () => {
   ioServer.close();
   httpServer.close();
+  await Message.delete({user:{id:userId}});
   await User.delete({id: userId});
   await Room.delete({identifier: roomIdentifier})
   return Promise.resolve();
@@ -94,6 +96,25 @@ describe('basic socket.io example', () => {
       expect(payload.users).to.be.an("array");
       expect(payload.messages).to.be.an("array");
       expect(payload.isInitialized).to.equal(true);
+
+      done();
+    });
+  });
+  it('should create a message', (done) => {
+    socket.emit("CREATE_MESSAGE", {userIdentifier: userId, text: "hello"});
+    socket.once('MESSAGE_CREATED', (payload) => {
+      expect(payload).to.be.an("object");
+      expect(payload).to.have.property("messages");
+      expect(payload.messages).to.have.property("text");
+      expect(payload.messages).to.have.property("stamp");
+      expect(payload.messages).to.have.property("user");
+      expect(payload.messages).to.have.property("room");
+
+      expect(payload.messages).to.be.an("object");
+      expect(payload.messages.text).to.equal("hello");
+      expect(payload.messages.stamp).to.be.a("string");
+      expect(payload.messages.user).to.be.an("object");
+      expect(payload.messages.room).to.be.an("object");
 
       done();
     });
