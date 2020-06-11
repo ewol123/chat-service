@@ -9,6 +9,7 @@ export default async function CreateUser(socket: io.Socket, payload) {
   try {
     const user = new User();
     user.name = payload.name;
+    user.socketId = socket.id;
 
     const errors = await validate(user);
     if (errors.length > 0) {
