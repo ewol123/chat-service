@@ -4,11 +4,24 @@ import log from "../utils/logger";
 import { getManager } from "typeorm";
 
 import { Room } from "../models/Room";
+import { User } from "../models/User";
+
 
 export default async function LeaveRoom(socket: io.Socket, payload) {
   try {
+
+    const user = await User.findOne({
+      where: { id: payload.userIdentifier },
+      relations: ["room"]
+    });
+
+    if (!user) {
+      log.warn({ message: "no user found in the room" });
+      return null;
+    }
+
     const room = await Room.findOne({
-      where: {users:[{id: payload.userIdentifier}]}
+      where: { id: user.room.id}
     });
 
     if(!room) {
