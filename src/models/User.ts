@@ -16,6 +16,9 @@ export class User extends BaseEntity {
     @Column({nullable: true})
     avatar?: string;
 
+    @Column({nullable: false})
+    socketId: string;
+
     @ManyToOne(type => Room, room => room.users)
     room: Room;
 
