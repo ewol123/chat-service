@@ -6,6 +6,8 @@ const config = {
     version
   },
   port: 3001,
+  redisHost: "localhost",
+  redisPort: 6379,
   database: {
     development: {
       type: "postgres",
@@ -55,5 +57,7 @@ const config = {
 export default {
   api: config.api,
   port: config.port,
+  redisHost: config.redisHost,
+  redisPort: config.redisPort,
   database: config.database[env]
 };
