@@ -25,10 +25,19 @@ before(async () => {
   httpServer = await createServer(true);
   httpServerAddr = httpServer.address() as import("net").AddressInfo;
   ioServer = connectSocketIO(httpServer);
-  return Promise.resolve();
+  socket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
+    reconnectionDelay: 0,
+    transports: ['websocket'],
+  });
+  socket.on('connect', () => {
+    return Promise.resolve();
+  });
 });
 
 after(async () => {
+  if (socket.connected) {
+    socket.disconnect();
+  }
   ioServer.close();
   httpServer.close();
   await Message.delete({user:{id:userId}});
@@ -36,25 +45,6 @@ after(async () => {
   await Room.delete({identifier: roomIdentifier})
   return Promise.resolve();
 });
-
-beforeEach((done) => {
-  socket = io.connect(`http://[${httpServerAddr.address}]:${httpServerAddr.port}`, {
-    reconnectionDelay: 0,
-    transports: ['websocket'],
-  });
-  socket.on('connect', () => {
-    done();
-  });
-});
-
-
-afterEach((done) => {
-  if (socket.connected) {
-    socket.disconnect();
-  }
-  done();
-});
-
 
 describe('basic socket.io example', () => {
   it('should communicate', (done) => {
