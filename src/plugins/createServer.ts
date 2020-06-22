@@ -7,8 +7,15 @@ import log from "../utils/logger";
 const { port } = config;
 
 export default async function createServer(migrate: boolean = false): Promise<http.Server> {
-  const app = express;
+  const app = express();
+
+  app.get('/', (request, response) => {
+    response.send('healthcheck');
+  });
+
   const server = http.createServer(app);
+
+
   await server.listen(port);
   log.info("Server listening at port:", port);
   await dbConnect(migrate);
