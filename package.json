@@ -1,6 +1,6 @@
 {
   "name": "chat-service",
-  "version": "1.0.0-beta",
+  "version": "1.0.1-beta",
   "description": "chat socket.io backend",
   "main": "src/app.ts",
   "scripts": {
