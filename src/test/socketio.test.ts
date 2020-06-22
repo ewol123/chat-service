@@ -21,7 +21,8 @@ let socket: SocketIOClient.Socket;
 let userId;
 const roomIdentifier = uuidv4()
 
-before(async () => {
+before(async function(){
+  this.timeout(5000);
   httpServer = await createServer(true);
   httpServerAddr = httpServer.address() as import("net").AddressInfo;
   ioServer = connectSocketIO(httpServer);
