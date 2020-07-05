@@ -8,26 +8,26 @@ const config = {
   port: 3001,
   redis: {
     development: {
-      redisHost: "localhost",
-      redisPort: 6379
+      redisHost: process.env.REDIS_HOST || "localhost",
+      redisPort: process.env.REDIS_PORT || 6379
     },
     production: {
       redisHost: process.env.REDIS_HOST,
       redisPort: process.env.REDIS_PORT
     },
     staging: {
-      redisHost: process.env.STG_REDIS_HOST || "localhost",
-      redisPort: process.env.STG_REDIS_PORT || 6379
+      redisHost: process.env.REDIS_HOST || "localhost",
+      redisPort: process.env.REDIS_PORT || 6379
     }
   },
   database: {
     development: {
       type: "postgres",
-      host: "localhost",
-      port: 5432,
-      username: "postgres",
-      password: "test",
-      database: "chat-dev",
+      host: process.env.PG_HOST || "localhost",
+      port: process.env.PG_PORT || 5432,
+      username: process.env.PG_USER || "postgres",
+      password: process.env.PG_PW || "test",
+      database: process.env.PG_DB || "chat-dev",
       entities: ["src/models/*.ts"],
       synchronize: false,
       migrations: ["src/migration/*.ts"],
@@ -51,11 +51,11 @@ const config = {
     },
     staging: {
       type: "postgres",
-      host: process.env.STG_HOST || "localhost",
-      port: process.env.STG_PORT || 5432,
-      username: process.env.STG_USER || "postgres",
-      password: process.env.STG_PW || "test",
-      database: process.env.STG_DB || "chat-staging",
+      host: process.env.PG_HOST || "localhost",
+      port: process.env.PG_PORT || 5432,
+      username: process.env.PG_USER || "postgres",
+      password: process.env.PG_PW || "test",
+      database: process.env.PG_DB || "chat-staging",
       entities: ["src/models/*.ts"],
       synchronize: false,
       migrations: ["src/migration/*.ts"],
