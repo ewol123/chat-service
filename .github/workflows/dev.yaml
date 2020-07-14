@@ -31,8 +31,6 @@ jobs:
             - name: npm install chat-service 
               working-directory: chat-service 
               run: npm install
-            - name: install tslint
-              run: npm install tslint -g
             - name: lint chat-service 
               working-directory: chat-service 
               run: npm run lint-fix
