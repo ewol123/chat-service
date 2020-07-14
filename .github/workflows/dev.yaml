@@ -30,7 +30,9 @@ jobs:
                 path: chat-service  #we can access this folder in our workspace 
             - name: npm install chat-service 
               working-directory: chat-service 
-              run: npm install 
+              run: npm install
+            - name: install tslint
+              run: npm install tslint -g
             - name: lint chat-service 
               working-directory: chat-service 
               run: npm run lint-fix
