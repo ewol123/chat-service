@@ -15,7 +15,7 @@ export default function connectSocketIo(server: http.Server): io.Server {
     ioServer.adapter(redisAdapter({ host: redisHost, port: redisPort }));
 
     ioServer.on("connection", socket => {
-      for(const TYPE in EVENT_TYPES){
+      for(const TYPE of Object.keys(EVENT_TYPES)){
         socket.on(TYPE, (payload) => {
           EVENT_TYPES[TYPE](socket,payload);
         });
