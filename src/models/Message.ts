@@ -20,5 +20,5 @@ export class Message extends BaseEntity {
 
   @ManyToOne(type => Room, room => room.messages)
   room: Room;
-  
+
 }

@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { MigrationInterface, QueryRunner } from "typeorm";
 
 export class initialMigration1591728100391 implements MigrationInterface {
@@ -13,7 +14,7 @@ export class initialMigration1591728100391 implements MigrationInterface {
             OIDS = FALSE
         )
         TABLESPACE pg_default;
-        
+
         ALTER TABLE public.room
             OWNER to postgres;`);
     await queryRunner.query(`CREATE TABLE public."user"
@@ -32,7 +33,7 @@ export class initialMigration1591728100391 implements MigrationInterface {
             OIDS = FALSE
         )
         TABLESPACE pg_default;
-        
+
         ALTER TABLE public."user"
             OWNER to postgres;`);
     await queryRunner.query(`CREATE TABLE public.message
@@ -56,7 +57,7 @@ export class initialMigration1591728100391 implements MigrationInterface {
             OIDS = FALSE
         )
         TABLESPACE pg_default;
-        
+
         ALTER TABLE public.message
             OWNER to postgres;`);
   }

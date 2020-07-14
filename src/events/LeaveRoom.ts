@@ -28,8 +28,8 @@ export default async function LeaveRoom(socket: io.Socket, payload) {
       log.warn({ message: "no user found in the room" });
       return null;
     }
-    
-    room.users = room.users.filter(user => user.id !== payload.userIdentifier);
+
+    room.users = room.users.filter(roomUser => roomUser.id !== payload.userIdentifier);
 
     await getManager().transaction(async transactionalEntityManager => {
       await transactionalEntityManager.save(room);

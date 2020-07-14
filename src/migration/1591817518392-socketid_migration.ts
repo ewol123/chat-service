@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { MigrationInterface, QueryRunner } from "typeorm";
 
 export class socketidMigration1591817518392 implements MigrationInterface {
