@@ -5,7 +5,7 @@ import log from "../utils/logger";
 import config from "./app";
 
 export async function dbConnect(migrate: boolean) {
-  //handle database connection errors, retry as long as there is no connection, every 1 second. 
+  // handle database connection errors, retry as long as there is no connection, every 1 second.
   let success = false;
   while (!success) {
     try {

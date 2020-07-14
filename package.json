@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production nodemon -w src --ext ts --exec ts-node src/app.ts",
     "dev": "cross-env NODE_ENV=development nodemon -w src --ext ts --exec ts-node src/app.ts",
-    "test": "cross-env NODE_ENV=staging mocha -r ts-node/register src/**/*.test.ts"
+    "test": "cross-env NODE_ENV=staging mocha -r ts-node/register src/**/*.test.ts",
+    "lint-fix": "tslint --fix -c tslint.json 'src/**/*{.ts,.tsx}'"
   },
   "keywords": [
     "chat",
@@ -42,6 +43,7 @@
     "mocha": "^7.2.0",
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.1",
-    "typescript": "^3.9.2"
+    "typescript": "^3.9.2",
+    "tslint": "^6.1.2"
   }
 }

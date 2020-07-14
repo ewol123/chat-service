@@ -28,7 +28,7 @@ export default async function Disconnect(socket: io.Socket) {
         log.warn({ message: "no user found in the room" });
         return null;
       }
-      room.users = room.users.filter(user => user.socketId !== socket.id);
+      room.users = room.users.filter(roomUser => roomUser.socketId !== socket.id);
       await getManager().transaction(async transactionalEntityManager => {
         await transactionalEntityManager.save(room);
         socket.leave(room.identifier, err => {
