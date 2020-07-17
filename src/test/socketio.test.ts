@@ -37,13 +37,14 @@ before(async function(){
 
 after(async () => {
   if (socket.connected) {
-    socket.disconnect();
+    socket.close();
   }
   ioServer.close();
   httpServer.close();
   await Message.delete({user:{id:userId}});
   await User.delete({id: userId});
   await Room.delete({identifier: roomIdentifier})
+  process.exit(0);
   return Promise.resolve();
 });
 
