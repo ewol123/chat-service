@@ -1,12 +1,11 @@
 import express from "express";
 import http from "http";
-import { dbConnect } from "../config/database";
-import config from "../config/app";
+import config from "../infrastructure/app";
 import log from "../utils/logger";
 
 const { port } = config;
 
-export default async function createServer(migrate: boolean = false): Promise<http.Server> {
+export default async function createServer(): Promise<http.Server> {
   const app = express();
 
   app.get('/', (request, response) => {
@@ -17,7 +16,6 @@ export default async function createServer(migrate: boolean = false): Promise<ht
 
 
   await server.listen(port);
-  log.info("Server listening at port:", port);
-  await dbConnect(migrate);
+  log.info("Server listening at port:", port);  
   return server;
 }
