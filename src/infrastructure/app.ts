@@ -28,11 +28,12 @@ const config = {
       username: process.env.PG_USER || "postgres",
       password: process.env.PG_PW || "test",
       database: process.env.PG_DB || "chat-dev",
-      entities: ["src/models/*.ts"],
+      entities: ["src/repository/message/Message.ts", "src/repository/room/Room.ts", "src/repository/user/User.ts"],
       synchronize: false,
-      migrations: ["src/migration/*.ts"],
+      dropSchema: false,
+      migrations: ["src/infrastructure/migration/*.ts"],
       cli: {
-        migrationsDir: "src/migration"
+        migrationsDir: "src/infrastructure/migration"
       }
     },
     production: {
@@ -42,11 +43,12 @@ const config = {
       username: process.env.PG_USER,
       password: process.env.PG_PW,
       database: process.env.PG_DB,
-      entities: ["src/models/*.ts"],
+      entities: ["src/repository/message/Message.ts", "src/repository/room/Room.ts", "src/repository/user/User.ts"],
       synchronize: false,
-      migrations: ["src/migration/*.ts"],
+      dropSchema: false,
+      migrations: ["src/infrastructure/migration/*.ts"],
       cli: {
-        migrationsDir: "src/migration"
+        migrationsDir: "src/infrastructure/migration"
       }
     },
     staging: {
@@ -56,11 +58,12 @@ const config = {
       username: process.env.PG_USER || "postgres",
       password: process.env.PG_PW || "test",
       database: process.env.PG_DB || "chat-staging",
-      entities: ["src/models/*.ts"],
+      entities: ["src/repository/message/Message.ts", "src/repository/room/Room.ts", "src/repository/user/User.ts"],
       synchronize: false,
-      migrations: ["src/migration/*.ts"],
+      dropSchema: true,
+      migrations: ["src/infrastructure/migration/*.ts"],
       cli: {
-        migrationsDir: "src/migration"
+        migrationsDir: "src/infrastructure/migration"
       }
     }
   }
