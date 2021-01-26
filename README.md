@@ -1,4 +1,13 @@
-### chat-service
+# Socket.io chat service (chat-service)
 
-[1.0.2]  change for CI/CD test
-[1.0.3]  change for CI/CD test
+sample chat service
+
+## Install the dependencies
+```bash
+npm install
+```
+
+### Start the app in development mode
+```bash
+npm run dev
+```
