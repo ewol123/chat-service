@@ -1,5 +1,5 @@
 import { MockRoomRepository } from "../lib/MockRoomRepository";
-import { Room } from "../../domain/models/Room";
+import { Room } from "../../core/models/Room";
 import { assert, expect } from "chai";
 import { rooms } from "../lib/dataProvider";
 

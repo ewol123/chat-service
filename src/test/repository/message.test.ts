@@ -1,5 +1,5 @@
 import { MockMessageRepository } from "../lib/MockMessageRepository";
-import { Message } from "../../domain/models/Message";
+import { Message } from "../../core/models/Message";
 import { assert, expect } from "chai";
 import { messages } from "../lib/dataProvider";
 

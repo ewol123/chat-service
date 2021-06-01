@@ -1,5 +1,5 @@
 import { MockUserRepository } from "../lib/MockUserRepository";
-import { User } from "../../domain/models/User";
+import { User } from "../../core/models/User";
 import { assert, expect } from "chai";
 import { users } from "../lib/dataProvider";
 

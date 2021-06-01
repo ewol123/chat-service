@@ -28,15 +28,7 @@ const config = {
       username: process.env.PG_USER || "postgres",
       password: process.env.PG_PW || "test",
       database: process.env.PG_DB || "chat-dev",
-<<<<<<< HEAD
-      entities: [
-        "src/infrastructure/repository/message/Message.ts",
-        "src/infrastructure/repository/room/Room.ts",
-        "src/infrastructure/repository/user/User.ts",
-      ],
-=======
-      entities: ["src/repository/message/Message.ts", "src/repository/room/Room.ts", "src/repository/user/User.ts"],
->>>>>>> parent of ed8e457... provisioning sample, test changes
+      entities: ["src/infrastructure/repository/message/Message.ts", "src/infrastructure/repository/room/Room.ts", "src/infrastructure/repository/user/User.ts"],
       synchronize: false,
       dropSchema: false,
       migrations: ["src/infrastructure/migration/*.ts"],
@@ -51,15 +43,7 @@ const config = {
       username: process.env.PG_USER,
       password: process.env.PG_PW,
       database: process.env.PG_DB,
-<<<<<<< HEAD
-      entities: [
-        "src/infrastructure/repository/message/Message.ts",
-        "src/infrastructure/repository/room/Room.ts",
-        "src/infrastructure/repository/user/User.ts",
-      ],
-=======
-      entities: ["src/repository/message/Message.ts", "src/repository/room/Room.ts", "src/repository/user/User.ts"],
->>>>>>> parent of ed8e457... provisioning sample, test changes
+      entities: ["src/infrastructure/repository/message/Message.ts", "src/infrastructure/repository/room/Room.ts", "src/infrastructure/repository/user/User.ts"],
       synchronize: false,
       dropSchema: false,
       migrations: ["src/infrastructure/migration/*.ts"],
@@ -74,15 +58,7 @@ const config = {
       username: process.env.PG_USER || "postgres",
       password: process.env.PG_PW || "test",
       database: process.env.PG_DB || "chat-staging",
-<<<<<<< HEAD
-      entities: [
-        "src/infrastructure/repository/message/Message.ts",
-        "src/infrastructure/repository/room/Room.ts",
-        "src/infrastructure/repository/user/User.ts",
-      ],
-=======
-      entities: ["src/repository/message/Message.ts", "src/repository/room/Room.ts", "src/repository/user/User.ts"],
->>>>>>> parent of ed8e457... provisioning sample, test changes
+      entities: ["src/infrastructure/repository/message/Message.ts", "src/infrastructure/repository/room/Room.ts", "src/infrastructure/repository/user/User.ts"],
       synchronize: false,
       dropSchema: true,
       migrations: ["src/infrastructure/migration/*.ts"],
