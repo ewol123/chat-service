@@ -1,5 +1,5 @@
-import { IRoomRepository } from "../../domain/repository/IRoomRepository";
-import { Room } from "../../domain/models/Room";
+import { IRoomRepository } from "../../core/repository/IRoomRepository";
+import { Room } from "../../core/models/Room";
 import { rooms } from "./dataProvider";
 import { injectable } from "inversify";
 

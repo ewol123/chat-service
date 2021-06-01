@@ -2,13 +2,13 @@ import http from "http";
 import io from "socket.io";
 import log from "../utils/logger";
 
-import EVENT_TYPES from "../socketio/index";
+import EVENT_TYPES from "../interface/index";
 
-import { IChimeService } from "../domain/services/chime/IChimeService";
-import { IMessageService } from "../domain/services/message/IMessageService";
-import { IRoomService } from "../domain/services/room/IRoomService";
-import { IUserService } from "../domain/services/user/IUserService";
-import { ICommonService } from "../domain/services/common/ICommonService";
+import { IChimeService } from "../application/services/chime/IChimeService";
+import { IMessageService } from "../application/services/message/IMessageService";
+import { IRoomService } from "../application/services/room/IRoomService";
+import { IUserService } from "../application/services/user/IUserService";
+import { ICommonService } from "../application/services/common/ICommonService";
 
 
 export interface services {

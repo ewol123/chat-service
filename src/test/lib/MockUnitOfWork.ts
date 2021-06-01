@@ -1,4 +1,4 @@
-import { IUnitOfWork } from "../../domain/repository/IUnitOfWork";
+import { IUnitOfWork } from "../../core/repository/IUnitOfWork";
 import { injectable } from "inversify";
 
 @injectable()

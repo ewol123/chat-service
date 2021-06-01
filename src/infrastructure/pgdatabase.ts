@@ -26,8 +26,6 @@ export async function dbConnect(migrate: boolean): Promise<Connection> {
         },
         migrationsRun: true,
         logging: false,
-        ssl: config.database.ssl,
-        extra: config.database.extra
     });
       const res = await connection.query('select 1+1 as result');
       if (res) {

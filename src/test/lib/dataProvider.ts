@@ -1,6 +1,6 @@
-import { Message } from "../../domain/models/Message";
-import { Room } from "../../domain/models/Room";
-import { User } from "../../domain/models/User";
+import { Message } from "../../core/models/Message";
+import { Room } from "../../core/models/Room";
+import { User } from "../../core/models/User";
 
 const message1 = new Message();
 message1.id = "b8beb1be-02f8-4b20-9005-6d0c419d6480";
