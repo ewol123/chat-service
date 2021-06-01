@@ -1,5 +1,5 @@
-import { IMessageRepository } from "../../domain/repository/IMessageRepository";
-import { Message } from "../../domain/models/Message";
+import { IMessageRepository } from "../../core/repository/IMessageRepository";
+import { Message } from "../../core/models/Message";
 import { messages } from "./dataProvider";
 import { injectable } from "inversify";
 

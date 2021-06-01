@@ -6,24 +6,24 @@ import connectSocketIO from "../plugins/connectSocketIO";
 import { dbConnect } from "../infrastructure/pgdatabase";
 
 import { TYPES } from "../types";
-import { IChimeService } from "../domain/services/chime/IChimeService";
-import { IMessageService } from "../domain/services/message/IMessageService";
-import { IRoomService } from "../domain/services/room/IRoomService";
-import { IUserService } from "../domain/services/user/IUserService";
-import { IMessageRepository } from "../domain/repository/IMessageRepository";
-import { IRoomRepository } from "../domain/repository/IRoomRepository";
-import { IUserRepository } from "../domain/repository/IUserRepository";
-import { IUnitOfWork } from "../domain/repository/IUnitOfWork";
+import { IChimeService } from "../application/services/chime/IChimeService";
+import { IMessageService } from "../application/services/message/IMessageService";
+import { IRoomService } from "../application/services/room/IRoomService";
+import { IUserService } from "../application/services/user/IUserService";
+import { IMessageRepository } from "../core/repository/IMessageRepository";
+import { IRoomRepository } from "../core/repository/IRoomRepository";
+import { IUserRepository } from "../core/repository/IUserRepository";
+import { IUnitOfWork } from "../core/repository/IUnitOfWork";
 
-import { ChimeService } from "../domain/services/chime/ChimeService";
-import { MessageService } from "../domain/services/message/MessageService";
-import { RoomService } from "../domain/services/room/RoomService";
-import { UserService } from "../domain/services/user/UserService";
-import { MessageRepository } from "../repository/message/MessageRepository";
-import { RoomRepository } from "../repository/room/RoomRepository";
-import { UserRepository } from "../repository/user/UserRepository";
-import { UnitOfWork } from "../repository/UnitOfWork";
-import { CommonService } from "../domain/services/common/CommonService";
+import { ChimeService } from "../application/services/chime/ChimeService";
+import { MessageService } from "../application/services/message/MessageService";
+import { RoomService } from "../application/services/room/RoomService";
+import { UserService } from "../application/services/user/UserService";
+import { MessageRepository } from "../infrastructure/repository/message/MessageRepository";
+import { RoomRepository } from "../infrastructure/repository/room/RoomRepository";
+import { UserRepository } from "../infrastructure/repository/user/UserRepository";
+import { UnitOfWork } from "../infrastructure/repository/UnitOfWork";
+import { CommonService } from "../application/services/common/CommonService";
 
 async function main() {
   const server = await createServer();
