@@ -15,3 +15,6 @@ Change db settings in database.development object
 ```bash
 npm run dev
 ```
+
+### how to run redis in docker
+If you want, you can use the provided runredis.bat file to easily spin up a redis db.
