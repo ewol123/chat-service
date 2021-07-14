@@ -2,7 +2,7 @@ import http from "http";
 import io from "socket.io";
 import log from "../utils/logger";
 
-import EVENT_TYPES from "../interface/index";
+import EVENT_TYPES from "../transport/index";
 
 import { IChimeService } from "../application/services/chime/IChimeService";
 import { IMessageService } from "../application/services/message/IMessageService";
